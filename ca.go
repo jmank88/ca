@@ -16,6 +16,7 @@ const (
 var (
 	ruleF = flag.Int("r", 110, "rule (0-255)")
 	randF = flag.Bool("rand", false, "randomized initial state")
+	imageF = flag.String("image", "", "image output filename")
 )
 
 func main() {
@@ -27,7 +28,16 @@ func main() {
 	r := rule(*ruleF)
 
 	var p printer
-	p = &logPrinter{os.Stdout}
+	if *imageF == "" {
+		p = &logPrinter{os.Stdout}
+	} else {
+		if f, err := os.Create(*imageF); err != nil {
+			log.Fatal(err)
+		} else {
+			defer f.Close()
+			p = newImagePrinter(width, generations, f)
+		}
+	}
 
 	var last, next [width]bool
 	initialState(last[:], *randF)
@@ -48,6 +58,9 @@ func main() {
 		}
 		next, last = last, next
 		p.print(last[:])
+	}
+	if err := p.close(); err != nil {
+		log.Fatal(err)
 	}
 }
 
