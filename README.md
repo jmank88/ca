@@ -2,7 +2,7 @@
 
 A program for generating cellular automata.
 
-![example.svg](https://cdn.rawgit.com/jmank88/ca/example/example.svg "Example SVG")
+![example.svg](example/example.png "Example png")
 
 ## Usage
 
