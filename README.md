@@ -2,7 +2,7 @@
 
 A program for generating cellular automata.
 
-![example.svg](example/example.svg "Example SVG")
+![example.svg](https://cdn.rawgit.com/jmank88/ca/example/example.svg "Example SVG")
 
 ## Usage
 
@@ -26,5 +26,3 @@ See the go generate commands in the [examples directory](example/example.go).
 [ ] Input files (json, etc).
 
 [ ] Fix gif output.
-
-[ ] Add other image formats (png, jpg).

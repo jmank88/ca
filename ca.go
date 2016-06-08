@@ -53,7 +53,21 @@ func main() {
 				log.Fatal(err)
 			} else {
 				defer f.Close()
-				p = newImagePrinter(width, generations, 10, f)
+				p = newImagePrinter(width, generations, 10, f, GIF)
+			}
+		case ".png":
+			if f, err := os.Create(*fileF); err != nil {
+				log.Fatal(err)
+			} else {
+				defer f.Close()
+				p = newImagePrinter(width, generations, 10, f, PNG)
+			}
+		case ".jpeg",".jpg":
+			if f, err := os.Create(*fileF); err != nil {
+				log.Fatal(err)
+			} else {
+				defer f.Close()
+				p = newImagePrinter(width, generations, 10, f, JPEG)
 			}
 		case ".json":
 			if f, err := os.Create(*fileF); err != nil {
