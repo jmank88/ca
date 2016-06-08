@@ -1,0 +1,6 @@
+hash: 76320509600a6c291dd1a9d01cdad95ff1ef20ccef076da193bed27943f29719
+updated: 2016-06-07T22:13:20.193395144-05:00
+imports:
+- name: github.com/ajstarks/svgo
+  version: 672fe547df4e49efc6db67a74391368bcb149b37
+devImports: []

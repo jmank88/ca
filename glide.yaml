@@ -1,0 +1,3 @@
+package: github.com/jmank88/ca
+import:
+- package: github.com/ajstarks/svgo

@@ -6,6 +6,7 @@ import (
 	"os"
 	"crypto/rand"
 	"math/big"
+	"path/filepath"
 )
 
 const (
@@ -16,7 +17,7 @@ const (
 var (
 	ruleF = flag.Int("r", 110, "rule (0-255)")
 	randF = flag.Bool("rand", false, "randomized initial state")
-	imageF = flag.String("image", "", "image output filename")
+	fileF = flag.String("file", "", "output filename; recognized extensions: txt, svg, gif, json")
 )
 
 func main() {
@@ -28,14 +29,46 @@ func main() {
 	r := rule(*ruleF)
 
 	var p printer
-	if *imageF == "" {
+
+	if *fileF == "" {
 		p = &logPrinter{os.Stdout}
 	} else {
-		if f, err := os.Create(*imageF); err != nil {
-			log.Fatal(err)
-		} else {
-			defer f.Close()
-			p = newImagePrinter(width, generations, f)
+		switch filepath.Ext(*fileF) {
+		case ".txt":
+			if f, err := os.Create(*fileF); err != nil {
+				log.Fatal(err)
+			} else {
+				defer f.Close()
+				p = &logPrinter{f}
+			}
+		case ".svg":
+			if f, err := os.Create(*fileF); err != nil {
+				log.Fatal(err)
+			} else {
+				defer f.Close()
+				p = newSvgPrinter(width, generations, 10, f)
+			}
+		case ".gif":
+			if f, err := os.Create(*fileF); err != nil {
+				log.Fatal(err)
+			} else {
+				defer f.Close()
+				p = newImagePrinter(width, generations, 10, f)
+			}
+		case ".json":
+			if f, err := os.Create(*fileF); err != nil {
+				log.Fatal(err)
+			} else {
+				defer f.Close()
+				p = newJsonPrinter(f)
+			}
+		default:
+			if f, err := os.Create(*fileF + ".txt"); err != nil {
+				log.Fatal(err)
+			} else {
+				defer f.Close()
+				p = &logPrinter{f}
+			}
 		}
 	}
 
