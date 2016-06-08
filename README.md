@@ -1,6 +1,6 @@
 # Cellular Automata
 
-A program for printing cellular automata.
+A program for generating cellular automata.
 
 ## Example
 
