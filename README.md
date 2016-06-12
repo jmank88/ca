@@ -2,7 +2,7 @@
 
 A program for generating cellular automata.
 
-![example.svg](example/example.png "Example png")
+![Rule 18](example/18.png "Rule 18")
 
 ## Usage
 
@@ -17,7 +17,7 @@ Usage of ca:
     	randomized initial state
 ```
 
-See the go generate commands in the [examples directory](example/example.go).
+See the go generate commands in [example.go](example.go).
 
 ## TODO
 
