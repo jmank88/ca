@@ -11,9 +11,9 @@ type svgDrawer struct {
 	*svg.SVG
 }
 
-func newSvgPrinter(width, generations, size int, out io.Writer) printer {
+func newSvgPrinter(cells, generations, size int, out io.Writer) printer {
 	s := svg.New(out)
-	x := width * size
+	x := cells * size
 	y := generations * size
 	s.Start(x, y)
 	s.Rect(0, 0, x, y, "fill:#ffffff;")

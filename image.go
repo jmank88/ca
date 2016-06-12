@@ -26,7 +26,7 @@ const (
 )
 
 // The newImagePrinter function returns a new gif image printer which writes to out.
-func newImagePrinter(width, generations, size int, out io.Writer, t Type) printer {
+func newImagePrinter(cells, generations, size int, out io.Writer, t Type) printer {
 	var onClose func(*imageDrawer) error
 	switch t {
 	case GIF:
@@ -39,7 +39,7 @@ func newImagePrinter(width, generations, size int, out io.Writer, t Type) printe
 	return &drawPrinter{
 		drawer: &imageDrawer{
 			Writer: out,
-			Gray: image.NewGray(image.Rect(0, 0, width * size, generations * size)),
+			Gray: image.NewGray(image.Rect(0, 0, cells * size, generations * size)),
 			onClose: onClose,
 		},
 		size: size,

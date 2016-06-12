@@ -2,7 +2,7 @@
 
 A program for generating cellular automata.
 
-![Rule 18](example/18.png "Rule 18")
+![Rule 110](example/rand-110.png "Rule 110")
 
 ## Usage
 
