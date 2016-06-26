@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	var config ca.Config
+	var config ca.Config = ca.Default
 
 	if s := dom.GetWindow().Location().Search; s != "" {
 		config = parseConfig(s[1:])
@@ -59,7 +59,7 @@ func parseConfig(search string) ca.Config {
 	if err != nil {
 		dom.GetWindow().Alert(err.Error())
 	}
-	var c ca.Config
+	var c ca.Config = ca.Default
 	if rule, err := strconv.Atoi(q.Get("rule")); err == nil {
 		c.Rule = rule
 	}
