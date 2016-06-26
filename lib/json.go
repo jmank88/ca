@@ -1,20 +1,26 @@
-package main
+package ca
 
 import (
 	"io"
 )
 
-type jsonPrinter struct {
+func init() {
+	Register("json", NewPrinter(func(cells, generations, size int, out io.Writer) Printer {
+		return NewJsonPrinter(out)
+	}))
+}
+
+type JsonPrinter struct {
 	io.Writer
 	first bool
 }
 
-func newJsonPrinter(w io.Writer) printer {
+func NewJsonPrinter(w io.Writer) Printer {
 	io.WriteString(w, "[")
-	return &jsonPrinter{Writer: w, first: true}
+	return &JsonPrinter{Writer: w, first: true}
 }
 
-func (p *jsonPrinter) print(v []bool) {
+func (p *JsonPrinter) Print(v []bool) {
 	if !p.first {
 		io.WriteString(p, ",\n")
 	}
@@ -33,7 +39,7 @@ func (p *jsonPrinter) print(v []bool) {
 	io.WriteString(p, "]")
 }
 
-func (p *jsonPrinter) close() error {
+func (p *JsonPrinter) Close() error {
 	io.WriteString(p, "]")
 	return nil
 }

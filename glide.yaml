@@ -1,3 +1,7 @@
 package: github.com/jmank88/ca
 import:
 - package: github.com/ajstarks/svgo
+- package: github.com/gopherjs/gopherjs
+  subpackages:
+  - js
+- package: honnef.co/go/js/dom

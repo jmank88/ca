@@ -3,6 +3,7 @@
 A program for generating cellular automata.
 
 ![Rule 110](example/rand-110.png "Rule 110")
+TODO link to webview for this and any others
 
 ## Usage
 
