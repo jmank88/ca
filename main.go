@@ -12,14 +12,16 @@ import (
 
 func main() {
 	var config ca.Config
+
+	flag.IntVar(&config.Cells, "cells", ca.Default.Cells, "number of cells")
+	flag.IntVar(&config.Generations, "gens", ca.Default.Generations, "generations")
+	flag.StringVar(&config.Format, "format", ca.Default.Format, "output format; override file extension; one of: txt, svg, gif, json, png, jpg, jpeg")
+	flag.BoolVar(&config.Random, "rand", ca.Default.Random, "randomized initial state")
+	flag.IntVar(&config.Rule, "r", ca.Default.Rule, "rule (0-255)")
+
 	var file string
 
-	flag.IntVar(&config.Rule, "r", 110, "rule (0-255)")
-	flag.BoolVar(&config.Random, "rand", false, "randomized initial state")
-	flag.IntVar(&config.Cells, "cells", 50, "number of cells")
-	flag.IntVar(&config.Generations, "gens", 50, "generations")
 	flag.StringVar(&file, "file", "", "output filename")
-	flag.StringVar(&config.Format, "format", "", "output format; override file extension; one of: txt, svg, gif, json, png, jpg, jpeg")
 
 	flag.Parse()
 
@@ -43,7 +45,6 @@ func main() {
 		}
 		config.Format = ext
 	}
-
 
 	if err := config.Print(out); err != nil {
 		log.Fatal(err)

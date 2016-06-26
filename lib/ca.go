@@ -13,18 +13,34 @@ func Register(key string, np NewPrinter) {
 	types[key] = np
 }
 
+var Default = Config{
+	Cells: 50,
+	Generations: 50,
+	Format: "txt",
+	Random: false,
+	Rule: 110,
+}
+
 type Config struct {
-	Rule        int
-	Random      bool
 	Cells       int
 	Generations int
 	Format      string
+	Random      bool
+	Rule        int
 }
 
-func (c *Config) Print(w io.Writer) error {
+func (c Config) Print(w io.Writer) error {
+
+	if c.Cells < 1 {
+		c.Cells = Default.Cells
+	}
+
+	if c.Generations < 1 {
+		c.Generations = Default.Generations
+	}
 
 	if c.Rule > 255 || c.Rule < 0 {
-		return fmt.Errorf("invalid rule (%d); must be between 0-255\n", c.Rule)
+		c.Rule = Default.Rule
 	}
 	r := rule(c.Rule)
 
@@ -32,6 +48,7 @@ func (c *Config) Print(w io.Writer) error {
 	if !ok {
 		return fmt.Errorf("invalid type: %s", c.Format)
 	}
+
 	p := np(c.Cells, c.Generations, c.Cells, w)
 
 	last := make([]bool, c.Cells, c.Cells)
@@ -79,6 +96,6 @@ func initialState(v []bool, randomize bool) {
 type rule int8
 
 // Note: last must be between 0-8
-func (r *rule) apply(last int8) bool {
-	return (1 << byte(last)) & *r > 0
+func (r rule) apply(last int8) bool {
+	return (1 << byte(last)) & r > 0
 }
