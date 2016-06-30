@@ -58,7 +58,7 @@ func (p *ImageDrawer) Close() error {
 	return p.onClose(p)
 }
 
-//TODO no colors
+//TODO no colors (works via gopherjs...)
 func writeGIF(p *ImageDrawer) error {
 	return gif.Encode(p.Writer, p.Gray, &gif.Options{NumColors:2, Quantizer: &bwQuantizer{}})
 }

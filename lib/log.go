@@ -12,8 +12,8 @@ func init() {
 }
 
 const (
-	blackSquare = "\u25FC"
 	whiteSquare = "\u25FD"
+	blackSquare = "\u25FE"
 )
 
 func NewLogPrinter(cells, generations, size int, out io.Writer) Printer {

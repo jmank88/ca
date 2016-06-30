@@ -1,6 +1,7 @@
 package ca
 
 import (
+	"fmt"
 	"io"
 
 	"github.com/ajstarks/svgo"
@@ -13,7 +14,7 @@ func init() {
 	Register("svg", svg)
 }
 
-// An SvgDrawer is a drawer which
+// An SvgDrawer is a drawer
 type SvgDrawer struct {
 	*svg.SVG
 }
@@ -22,7 +23,7 @@ func NewSvgPrinter(cells, generations, size int, out io.Writer) Printer {
 	s := svg.New(out)
 	x := cells * size
 	y := generations * size
-	s.Start(x, y)
+	s.Startraw(fmt.Sprintf(`viewBox="0 0 %d %d"`, x, y))
 	s.Rect(0, 0, x, y, "fill:#ffffff;")
 	return &DrawPrinter{
 		Drawer: &SvgDrawer{
