@@ -1,5 +1,5 @@
 hash: 0535068266fb37b1112f9be49b1a75de7b404d809e59fc051380b93d18dc6684
-updated: 2016-06-25T10:44:58.86024322-05:00
+updated: 2016-06-29T22:13:04.856959269-05:00
 imports:
 - name: github.com/ajstarks/svgo
   version: 672fe547df4e49efc6db67a74391368bcb149b37
@@ -7,6 +7,8 @@ imports:
   version: ad712376c7b3218a7278e98928593a9959993a74
   subpackages:
   - js
+- name: github.com/gopherjs/jquery
+  version: a27a4f4dda823d6c917e3ef4ef60ab9cbd5a2299
 - name: honnef.co/go/js/dom
   version: 24aa052bc5c63cfb9383bf59493ee48621ca788c
 testImports: []
