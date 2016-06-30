@@ -15,7 +15,7 @@ func main() {
 
 	flag.IntVar(&config.Cells, "cells", ca.Default.Cells, "number of cells")
 	flag.IntVar(&config.Generations, "gens", ca.Default.Generations, "generations")
-	flag.StringVar(&config.Format, "format", ca.Default.Format, "output format; override file extension; one of: txt, svg, gif, json, png, jpg, jpeg")
+	flag.StringVar(&config.Format, "format", "", "output format; override file extension; one of: txt, svg, gif, json, png, jpg, jpeg")
 	flag.BoolVar(&config.Random, "rand", ca.Default.Random, "randomized initial state")
 	flag.IntVar(&config.Rule, "r", ca.Default.Rule, "rule (0-255)")
 
@@ -39,11 +39,11 @@ func main() {
 	}
 
 	if config.Format == "" {
-		ext := filepath.Ext(file)
-		if ext != "" {
-			ext = ext[1:len(ext)]
+		if ext := filepath.Ext(file); ext != "" {
+			config.Format = ext[1:len(ext)]
+		} else {
+			config.Format = ca.Default.Format
 		}
-		config.Format = ext
 	}
 
 	if err := config.Print(out); err != nil {

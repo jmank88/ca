@@ -22,8 +22,6 @@ See the go generate commands in [example.go](example.go).
 
 ## TODO
 
-[ ] Flags for width, generations, cell size
-
 [ ] Input files (json, etc).
 
 [ ] Fix gif output.
