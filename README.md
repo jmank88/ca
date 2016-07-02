@@ -2,18 +2,25 @@
 
 A program for generating cellular automata.
 
-![Rule 110](example/rand-110.png "Rule 110")
-TODO link to webview for this and any others
+![Rule 30](example/30.png "Rule 30")
+
+[View in Playground](https://jmank88.github.io/ca/playground/?rule=30)
 
 ## Usage
 
 ```
-ca --help
+> ca --help
 Usage of ca:
+  -cells int
+    	number of cells (default 50)
   -file string
-    	output filename; recognized extensions: txt, svg, gif, json
+    	output filename
+  -format string
+    	output format; override file extension; one of: txt, svg, gif, json, png, jpg, jpeg
+  -gens int
+    	generations (default 50)
   -r int
-    	rule (0-255) (default 110)
+    	rule (0-255) (default 30)
   -rand
     	randomized initial state
 ```
