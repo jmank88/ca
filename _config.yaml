@@ -1,1 +1,1 @@
-exclude: vendor
+exclude: [vendor]
