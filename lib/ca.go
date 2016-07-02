@@ -18,7 +18,7 @@ var Default = Config{
 	Generations: 50,
 	Format: "txt",
 	Random: false,
-	Rule: 110,
+	Rule: 30,
 }
 
 type Config struct {

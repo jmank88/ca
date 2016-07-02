@@ -2,9 +2,9 @@
 
 A program for generating cellular automata.
 
-![Rule 18](example/18.png "Rule 18")
+![Rule 30](example/30.png "Rule 30")
 
-[View in Playground](https://jmank88.github.io/ca/playground/?rule=18)
+[View in Playground](https://jmank88.github.io/ca/playground/?rule=30)
 
 ## Usage
 
@@ -20,7 +20,7 @@ Usage of ca:
   -gens int
     	generations (default 50)
   -r int
-    	rule (0-255) (default 110)
+    	rule (0-255) (default 30)
   -rand
     	randomized initial state
 ```
