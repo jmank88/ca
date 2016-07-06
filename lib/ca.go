@@ -19,6 +19,7 @@ var Default = Config{
 	Format: "txt",
 	Random: false,
 	Rule: 30,
+	Size: 5,
 }
 
 type Config struct {
@@ -27,6 +28,7 @@ type Config struct {
 	Format      string
 	Random      bool
 	Rule        int
+	Size	    int
 }
 
 func (c Config) Print(w io.Writer) error {
@@ -44,12 +46,16 @@ func (c Config) Print(w io.Writer) error {
 	}
 	r := rule(c.Rule)
 
+	if c.Size < 1 {
+		c.Size = Default.Size
+	}
+
 	np, ok := types[c.Format]
 	if !ok {
 		return fmt.Errorf("invalid type: %s", c.Format)
 	}
 
-	p := np(c.Cells, c.Generations, c.Cells, w)
+	p := np(c.Cells, c.Generations, c.Size, w)
 
 	last := make([]bool, c.Cells, c.Cells)
 	next := make([]bool, c.Cells, c.Cells)

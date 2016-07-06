@@ -3,6 +3,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/base64"
 	"fmt"
 	"html"
 	"net/url"
@@ -10,10 +11,10 @@ import (
 	"strconv"
 
 	"github.com/jmank88/ca/lib"
-	"github.com/jmank88/ca/vendor/github.com/gopherjs/gopherjs/js"
-	"honnef.co/go/js/dom"
+
+	"github.com/gopherjs/gopherjs/js"
 	"github.com/gopherjs/jquery"
-	"encoding/base64"
+	"honnef.co/go/js/dom"
 )
 
 var WebDefault ca.Config = ca.Default
@@ -85,6 +86,9 @@ func parseConfig(search string) ca.Config {
 	if rule, err := strconv.Atoi(q.Get("rule")); err == nil {
 		c.Rule = rule
 	}
+	if size, err := strconv.Atoi(q.Get("size")); err == nil {
+		c.Size = size
+	}
 	return c
 }
 
@@ -105,6 +109,9 @@ func setInputs(c ca.Config) {
 	}
 	if c.Rule != WebDefault.Rule {
 		setInput("rule", strconv.Itoa(c.Rule))
+	}
+	if c.Size != WebDefault.Size {
+		setInput("size", strconv.Itoa(c.Size))
 	}
 }
 
@@ -135,6 +142,9 @@ func asCommand(c ca.Config) string {
 	}
 	if c.Rule != ca.Default.Rule {
 		fmt.Fprintf(&b, " -r %d", c.Rule)
+	}
+	if c.Size != ca.Default.Size {
+		fmt.Fprintf(&b, " -s %d", c.Size)
 	}
 	return b.String()
 }
