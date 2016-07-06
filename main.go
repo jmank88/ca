@@ -18,6 +18,7 @@ func main() {
 	flag.StringVar(&config.Format, "format", "", "output format; override file extension; one of: txt, svg, gif, json, png, jpg, jpeg")
 	flag.BoolVar(&config.Random, "rand", ca.Default.Random, "randomized initial state")
 	flag.IntVar(&config.Rule, "r", ca.Default.Rule, "rule (0-255)")
+	flag.IntVar(&config.Size, "s", ca.Default.Size, "size in format units (>0)")
 
 	var file string
 
