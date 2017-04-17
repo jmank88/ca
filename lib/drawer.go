@@ -9,7 +9,7 @@ type Drawer interface {
 type DrawPrinter struct {
 	Drawer
 	// The height and width of each cell.
-	size int
+	size       int
 	generation int
 }
 
@@ -17,7 +17,7 @@ func (d *DrawPrinter) Print(v []bool) {
 	for i, b := range v {
 		x := i * d.size
 		y := d.generation * d.size
-		d.Draw(x, y, x + d.size, y + d.size, b)
+		d.Draw(x, y, x+d.size, y+d.size, b)
 	}
 	d.generation++
 }
@@ -25,5 +25,3 @@ func (d *DrawPrinter) Print(v []bool) {
 func (d *DrawPrinter) Close() error {
 	return d.Drawer.Close()
 }
-
-

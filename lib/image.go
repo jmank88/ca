@@ -3,10 +3,10 @@ package ca
 import (
 	"image"
 	"image/color"
-	"image/gif"
 	"image/draw"
-	"image/png"
+	"image/gif"
 	"image/jpeg"
+	"image/png"
 	"io"
 )
 
@@ -28,8 +28,8 @@ func init() {
 func NewImagePrinter(cells, generations, size int, out io.Writer, onClose func(*ImageDrawer) error) Printer {
 	return &DrawPrinter{
 		Drawer: &ImageDrawer{
-			Writer: out,
-			Gray: image.NewGray(image.Rect(0, 0, cells * size, generations * size)),
+			Writer:  out,
+			Gray:    image.NewGray(image.Rect(0, 0, cells*size, generations*size)),
 			onClose: onClose,
 		},
 		size: size,
@@ -60,10 +60,10 @@ func (p *ImageDrawer) Close() error {
 
 //TODO no colors (works via gopherjs...)
 func writeGIF(p *ImageDrawer) error {
-	return gif.Encode(p.Writer, p.Gray, &gif.Options{NumColors:2, Quantizer: &bwQuantizer{}})
+	return gif.Encode(p.Writer, p.Gray, &gif.Options{NumColors: 2, Quantizer: &bwQuantizer{}})
 }
 
-type bwQuantizer struct {}
+type bwQuantizer struct{}
 
 func (q *bwQuantizer) Quantize(p color.Palette, m image.Image) color.Palette {
 	return color.Palette{color.Black, color.White}
@@ -74,5 +74,5 @@ func writePNG(p *ImageDrawer) error {
 }
 
 func writeJPG(p *ImageDrawer) error {
-	return jpeg.Encode(p.Writer, p.Gray, &jpeg.Options{Quality:25})
+	return jpeg.Encode(p.Writer, p.Gray, &jpeg.Options{Quality: 25})
 }

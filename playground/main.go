@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"html"
 	"net/url"
-	"strings"
 	"strconv"
+	"strings"
 
 	"github.com/jmank88/ca/lib"
 
@@ -50,14 +50,14 @@ func main() {
 		dom.GetWindow().Document().
 			GetElementByID("output").
 			SetInnerHTML(b.String())
-	case "gif","png","jpg","jpeg":
+	case "gif", "png", "jpg", "jpeg":
 		img := dom.GetWindow().Document().CreateElement("img")
 		b64 := base64.StdEncoding.EncodeToString(b.Bytes())
-		img.Underlying().Set("src", "data:image/png;base64," + b64)
+		img.Underlying().Set("src", "data:image/png;base64,"+b64)
 		dom.GetWindow().Document().
 			GetElementByID("output").
 			AppendChild(img)
-	case "","log","txt":
+	case "", "log", "txt":
 		fallthrough
 	default:
 		dom.GetWindow().Document().
@@ -148,7 +148,6 @@ func asCommand(c ca.Config) string {
 	}
 	return b.String()
 }
-
 
 // The render function submits the form after disabling empty inputs.
 // Satifies js.MakeFunc().

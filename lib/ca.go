@@ -14,12 +14,12 @@ func Register(key string, np NewPrinter) {
 }
 
 var Default = Config{
-	Cells: 50,
+	Cells:       50,
 	Generations: 50,
-	Format: "txt",
-	Random: false,
-	Rule: 30,
-	Size: 5,
+	Format:      "txt",
+	Random:      false,
+	Rule:        30,
+	Size:        5,
 }
 
 type Config struct {
@@ -28,7 +28,7 @@ type Config struct {
 	Format      string
 	Random      bool
 	Rule        int
-	Size	    int
+	Size        int
 }
 
 func (c Config) Print(w io.Writer) error {
@@ -70,7 +70,7 @@ func (c Config) Print(w io.Writer) error {
 			if j > 0 && last[j-1] {
 				l |= 1 << 2
 			}
-				if j < c.Cells - 1 && last[j+1] {
+			if j < c.Cells-1 && last[j+1] {
 				l |= 1
 			}
 			next[j] = r.apply(l)
@@ -103,5 +103,5 @@ type rule int8
 
 // Note: last must be between 0-8
 func (r rule) apply(last int8) bool {
-	return (1 << byte(last)) & r > 0
+	return (1<<byte(last))&r > 0
 }
