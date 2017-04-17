@@ -1,4 +1,4 @@
-# Cellular Automata
+# Cellular Automata [![GoDoc](https://godoc.org/github.com/jmank88/ca?status.svg)](https://godoc.org/github.com/jmank88/ca) [![Go Report Card](https://goreportcard.com/badge/github.com/jmank88/ca)](https://goreportcard.com/report/github.com/jmank88/ca)
 
 A program for generating cellular automata.
 
